@@ -1,5 +1,4 @@
 import streamlit as st
-from matplotlib.style.core import available
 
 from read_sql import get_all_rows, get_static
 import plotly.express as px
