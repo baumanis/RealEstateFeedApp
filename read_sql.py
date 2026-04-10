@@ -203,7 +203,9 @@ def avg_price_timeline(typeofdeal: int):
     left join Iela on t1.IelaId = Iela.Id
     
     where t1.TypeOfDeal = {str(typeofdeal)}
-    )
+    ),
+
+    t3 as (
     
     select t2.StudyDate, t2.City, round(SUM(t2.Price) / SUM(t2.Size), 2) as WeightedAvg
     from t2
@@ -215,6 +217,25 @@ def avg_price_timeline(typeofdeal: int):
     
     
     order by t2.StudyDate, SUM(t2.Price) / SUM(t2.Size)
+    ),
+
+    t4 as (
+    select t2.StudyDate, 'Total' as City, round(SUM(t2.Price) / SUM(t2.Size), 2) as WeightedAvg
+    from t2
+    
+    where t2.City not in ('nan', 'None')
+    and t2.District not in ('nan', 'None')
+    
+    group by t2.StudyDate
+    
+    
+    order by t2.StudyDate, SUM(t2.Price) / SUM(t2.Size)
+    )
+
+    select t3.* from t3
+    union
+    select t4.* from t4
+    order by StudyDate
 
 
         """
