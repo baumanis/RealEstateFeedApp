@@ -5,9 +5,9 @@ import plotly.express as px
 
 page_txt = {
     'English': ['Timeseries', 'Type of deal', 'Sell', 'Rent', 'Price per sqm, EUR',
-                'City', 'Study date'],
+                'City', 'Study date', 'Total'],
     'Latviski': ['Laika grafiks', 'Darījuma veids', 'Pārdod', 'Izīrē', 'Cena uz kvadrātmetru, EUR',
-                 'Pilsēta', 'Par datumu']
+                 'Pilsēta', 'Par datumu', 'Kopējais']
 }
 
 
@@ -29,6 +29,7 @@ if input_typeofdeal is not None:
         'value': page_txt[st.session_state.lang][4],
         'City': page_txt[st.session_state.lang][5],
         'StudyDate': page_txt[st.session_state.lang][6],
+        'Total': page_txt[st.session_state.lang][7]
     }
                   )
 
